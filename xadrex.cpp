@@ -178,105 +178,108 @@ void movimentarRei(int linhaPeca, int colunaPeca) {             //Declaração d
 
 // PEÇAS BRANCAS
 
-void movimentarReiBranco(int linhaPeca, int colunaPeca) {           //Declaração de uma função "movimentarReiBranco" que recebe dois argumentos inteiros linhaPeca e colunaPeca
+void movimentarReiBranco(int linhaPeca, int colunaPeca) {           //Declaração da função "movimentarReiBranco" que recebe dois argumentos inteiros linhaPeca e colunaPeca
 
   movimentarRei(linhaPeca, colunaPeca);             //Chama a função movimentarRei passando linhaPeca e colunaPeca como argumentos
 
   colocarTabuleiro();           //Chama a função colocarTabuleiro que provavelmente atualiza a exibição do tabuleiro após a movimentação
 
-  validarPosicao(linhaPeca, colunaPeca);
+  validarPosicao(linhaPeca, colunaPeca);            //Chama a função validarPosicao que provavelmente verifica se a posição da peça é válida após a movimentação
 }
 
-void movimentarCavaloBranco(int linhaPeca, int colunaPeca) {
+void movimentarCavaloBranco(int linhaPeca, int colunaPeca) {            //Declaração da função "movimentarCavaloBranco" que recebe dois argumentos inteiros linhaPeca e colunaPeca
 
-  movimentarCavalo(linhaPeca, colunaPeca);
+  movimentarCavalo(linhaPeca, colunaPeca);          //Chama a função movimentarCavalo passando linhaPeca e colunaPeca como argumentos
 
-  colocarTabuleiro();
+  colocarTabuleiro();           //Chama a função colocarTabuleiro que provavelmente atualiza a exibição do tabuleiro após a movimentação
 
-  validarPosicao(linhaPeca, colunaPeca);
+  validarPosicao(linhaPeca, colunaPeca);            //Chama a função validarPosicao que provavelmente verifica se a posição da peça é válida após a movimentação
 }
 
-void movimentarBispoBranco(int linhaPeca, int colunaPeca) {
+void movimentarBispoBranco(int linhaPeca, int colunaPeca) {             //Declaração da função "movimentarBispoBranco" que recebe dois argumentos inteiros linhaPeca e colunaPeca
 
-  movimentarBispo(linhaPeca, colunaPeca);
+  movimentarBispo(linhaPeca, colunaPeca);           //Chama a função movimentarBispo passando linhaPeca e colunaPeca como argumentos
 
-  colocarTabuleiro();
+  colocarTabuleiro();           //Chama a função colocarTabuleiro que provavelmente atualiza a exibição do tabuleiro após a movimentação
 
-  validarPosicao(linhaPeca, colunaPeca);
+  validarPosicao(linhaPeca, colunaPeca);            //Chama a função validarPosicao que provavelmente verifica se a posição da peça é válida após a movimentação
 }
 
-void movimentarPeaoBranco(int linhaPeca, int colunaPeca) {
+void movimentarPeaoBranco(int linhaPeca, int colunaPeca) {              //Declaração da função "movimentarPeaoBranco" que recebe a linha e a coluna da peça como parâmetros
 
-  char linhaInicial = '7';
+  char linhaInicial = '7';              //Declaração de uma variável char "linhaInicial" com o valor "7"
 
   if (*tabuleiro[linhaPeca] == linhaInicial &&
-      tabuleiro[linhaPeca - 1][colunaPeca] == ' ' &&
+      tabuleiro[linhaPeca - 1][colunaPeca] == ' ' &&            //Verifica se a linha da peça é igual à "linhaInicial" e se as duas casas à frente da peça estão vazias
       tabuleiro[linhaPeca - 2][colunaPeca] == ' ') {
-    tabuleiro[linhaPeca - 1][colunaPeca] = 'X';
+      
+    tabuleiro[linhaPeca - 1][colunaPeca] = 'X';             //Se essas condições não forem verdadeiras, marca as duas casas à frente da peça com "X", indicando que a peça pode se mover para essas casas
     tabuleiro[linhaPeca - 2][colunaPeca] = 'X';
-  } else if (tabuleiro[linhaPeca - 1][colunaPeca] == ' ') {
-    tabuleiro[linhaPeca - 1][colunaPeca] = 'X';
+      
+  } else if (tabuleiro[linhaPeca - 1][colunaPeca] == ' ') {             //Se a condição acima não for verdadeira, verifica se a casa imediatamente à frente da peça está vazia
+   
+    tabuleiro[linhaPeca - 1][colunaPeca] = 'X';             //Se a casa imediatamente à frente da peça estiver vazia marca essa casa com "X", indicando que a peça pode se mover para essa casa
 
   } else {
-    std::cout << "Movimento invalido.";
+    std::cout << "Movimento invalido.";             //Se a casa imediatamente à frente da peça estiver ocupada e as duas casas à frente da peça também estiverem ocupadas, imprime a mensagem "Movimento invalido" e retorna da função
     std::cout << std::endl;
     return;
   }
 
-  colocarTabuleiro();
+  colocarTabuleiro();           //Atualiza o tabuleiro com as marcações "X"
 
-  std::cout << std::endl;
+  std::cout << std::endl;           //Imprime uma linha em branco
 
-  validarPosicao(linhaPeca, colunaPeca);
+  validarPosicao(linhaPeca, colunaPeca);            //Verifica se a posição atual da peça é válida
 }
 
-void movimentarTorreBranca(int linhaPeca, int colunaPeca) {
+void movimentarTorreBranca(int linhaPeca, int colunaPeca) {             //Declaração da função "movimentarTorreBranca" que recebe a linha e coluna da peça como parâmetro
 
-  movimentarTorre(linhaPeca, colunaPeca);
+  movimentarTorre(linhaPeca, colunaPeca);           //Chama a função movimentarTorre passando as mesmas coordenadas da torre branca para realizar o movimento da torre
 
-  colocarTabuleiro();
+  colocarTabuleiro();           //A função colocarTabuleiro é chamada para atualizar o tabuleiro após o movimento
 
-  validarPosicao(linhaPeca, colunaPeca);
+  validarPosicao(linhaPeca, colunaPeca);            //A função validarPosicao é chamada para verificar se a posição final da torre é válida
 }
 
-void movimentarRainhaBranca(int linhaPeca, int colunaPeca) {
+void movimentarRainhaBranca(int linhaPeca, int colunaPeca) {            //Declaração da função "movimentarRainhaBranca" que recebe a linha e coluna da peça como parâmetro
 
-  movimentarBispo(linhaPeca, colunaPeca);
-  movimentarTorre(linhaPeca, colunaPeca);
+  movimentarBispo(linhaPeca, colunaPeca);           //A função movimentarBispo é chamada passando as mesmas coordenadas da rainha branca para realizar o movimento do bispo
+  movimentarTorre(linhaPeca, colunaPeca);           //A função movimentarTorre é chamada passando as mesmas coordenadas da rainha branca para realizar o movimento da torre
 
-  colocarTabuleiro();
+  colocarTabuleiro();           //A função colocarTabuleiro é chamada para atualizar o tabuleiro após o movimento
 
-  validarPosicao(linhaPeca, colunaPeca);
+  validarPosicao(linhaPeca, colunaPeca);            //A função validarPosicao é chamada para verificar se a posição final da rainha é válida
 }
 
 // PEÇAS PRETAS
 
-void movimentarReiPreto(int linhaPeca, int colunaPeca) {
+void movimentarReiPreto(int linhaPeca, int colunaPeca) {            //Declaração da função "movimentarReiPreto" que recebe como parâmetros linhaPeca e colunaPeca
 
-  movimentarRei(linhaPeca, colunaPeca);
+  movimentarRei(linhaPeca, colunaPeca);             //Chama a função movimentarRei que passa como parâmetros linhaPeca e colunaPeca
 
-  colocarTabuleiro();
+  colocarTabuleiro();           //Chama a função colocarTabuleiro que imprime o estado atual do tabuleiro
 
-  validarPosicao(linhaPeca, colunaPeca);
+  validarPosicao(linhaPeca, colunaPeca);            //Chama a função validarPosicao que passa como parâmetros linhaPeca e colunaPeca
 }
 
-void movimentarRainhaPreta(int linhaPeca, int colunaPeca) {
+void movimentarRainhaPreta(int linhaPeca, int colunaPeca) {             //Declaração da função "movimentarRainhaPreta" que recebe como parâmetros linhaPeca e colunaPeca
 
-  movimentarBispo(linhaPeca, colunaPeca);
-  movimentarTorre(linhaPeca, colunaPeca);
+  movimentarBispo(linhaPeca, colunaPeca);           //Chama a função movimentarBispo que passa como parâmetros linhaPeca e colunaPeca
+  movimentarTorre(linhaPeca, colunaPeca);           //Chama a função movimentarTorre que passa como parâmetros linhaPeca e colunaPeca
 
-  colocarTabuleiro();
+  colocarTabuleiro();           //Chama a função colocarTabuleiro que imprime o estado atual do tabuleiro
 
-  validarPosicao(linhaPeca, colunaPeca);
+  validarPosicao(linhaPeca, colunaPeca);            //Chama a função validarPosicao que passa como parâmetros linhaPeca e colunaPeca
 }
 
-void movimentarBispoPreto(int linhaPeca, int colunaPeca) {
+void movimentarBispoPreto(int linhaPeca, int colunaPeca) {              //Declaração da função "movimentarBispoPreto" que recebe como parâmetros linhaPeca e colunaPeca
 
-  movimentarBispo(linhaPeca, colunaPeca);
+  movimentarBispo(linhaPeca, colunaPeca);           //Chama a função movimentarBispo que passa como parâmetros linhaPeca e colunaPeca
 
-  colocarTabuleiro();
+  colocarTabuleiro();           //Chama a função colocarTabuleiro que imprime o estado atual do tabuleiro
 
-  validarPosicao(linhaPeca, colunaPeca);
+  validarPosicao(linhaPeca, colunaPeca);            //Chama a função validarPosicao que passa como parâmetros linhaPeca e colunaPeca
 }
 
 void movimentarCavaloPreto(int linhaPeca, int colunaPeca) {

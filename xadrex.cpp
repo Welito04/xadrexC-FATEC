@@ -1,32 +1,32 @@
-#include <iostream>
+#include <iostream>         //Biblioteca iostream que é usada para entrada e saída de dados
 
-char tabuleiro[9][9] = {
+char tabuleiro[9][9] = {            //Linha que declara uma matriz de caracteres chamada "tabuleiro" com 9 linhas e 9 colunas
 
     ' ', '1', '2', '3', '4', '5', '6', '7', '8', '1', 't', 'c', 'b', 'q',
     'r', 'b', 'c', 't', '2', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', '3',
-    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '4', ' ', ' ', ' ', ' ', ' ',
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '4', ' ', ' ', ' ', ' ', ' ',           //Inicializa a matriz acima com caracteres que representam as peças e espaços vazios no tabuleiro de xadrez
     ' ', ' ', ' ', '5', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '6', ' ',
     ' ', ' ', ' ', ' ', ' ', ' ', ' ', '7', 'P', 'P', 'P', 'P', 'P', 'P',
     'P', 'P', '8', 'T', 'C', 'B', 'Q', 'R', 'B', 'C', 'T',
 };
 
-void limparTabuleiro() {
+void limparTabuleiro() {            //Linha declara uma função chamada "limparTabuleiro"
   for (int linha = 0; linha < 9; linha++) {
     for (int coluna = 0; coluna < 9; coluna++) {
-      if (tabuleiro[linha][coluna] == 'X') {
+      if (tabuleiro[linha][coluna] == 'X') {            //Este bloco de código dentro da função acima percorre a matriz "tabuleiro" e substitui todos os caracteres 'X' por um espaço em branco ' '
         tabuleiro[linha][coluna] = ' ';
       }
     }
   }
 }
 
-void colocarTabuleiro() {
+void colocarTabuleiro() {           //Linha que declara uma função chamada "colocarTabuleiro"
 
   for (int linha = 0; linha < 9; linha++) {
     std::cout << std::endl;
     for (int coluna = 0; coluna < 9; coluna++) {
       std::cout << tabuleiro[linha][coluna];
-      if (linha == 0) {
+      if (linha == 0) {             //Este bloco de código dentro da função acima percorre a matriz "tabuleiro" e imprime na tela o caractere em cada posição
         std::cout << "   ";
       } else {
         std::cout << " | ";
@@ -34,155 +34,155 @@ void colocarTabuleiro() {
     }
   }
 
-  std::cout << std::endl;
+  std::cout << std::endl;           //Serve para adicionar uma nova linha na saída do console
 }
 
-void validarPosicao(int linhaPeca, int colunaPeca) {
+void validarPosicao(int linhaPeca, int colunaPeca) {            //Declaração de uma função chamada "validarPosicao" que recebe duas variáveis inteiras chamadas "linhaPeca" e "colunaPeca"
 
-  int destinoLinha;
-  int destinoColuna;
-  char letra = tabuleiro[linhaPeca][colunaPeca];
-  int i = 0;
+  int destinoLinha;             //Declaração de variáveis inteiras "destinoLinha"
+  int destinoColuna;            //Declaração de variáveis inteiras "destinoColuna" 
+  char letra = tabuleiro[linhaPeca][colunaPeca];            //Declaração de variável char "letra", que armazena o caractere da posição do tabuleiro correspondente às coordenadas da peça que se deseja movimentar
+  int i = 0;            //A variável "i" é inicializada com zero e será utilizada para controlar o loop do-while que será executado a seguir
 
-  do {
+  do {          //Início do loop do-while que será executado pelo menos uma vez, para receber as coordenadas da posição para a qual a peça deve ser movida
 
     if (i > 0) {
-      std::cout << "Movimento Invalido, escolha uma casa X.";
+      std::cout << "Movimento Invalido, escolha uma casa X.";           //Se o valor de "i" for maior que zero, significa que o usuário já tentou realizar um movimento inválido anteriormente.
       std::cout << std::endl;
     }
 
     std::cout << std::endl;
 
-    std::cout << "Digite a linha destino: ";
+    std::cout << "Digite a linha destino: ";            
     std::cin >> destinoLinha;
-
+                                                    //Nesse bloco de código a função solicita que o usuário informe a linha e a coluna de destino da peça, lendo esses valores a partir do console usando "std::cin"
     std::cout << "Digite a coluna destino: ";
     std::cin >> destinoColuna;
 
-    i++;
-
-  } while (tabuleiro[destinoLinha][destinoColuna] != 'X');
+    i++;            //Nessa parte de ler as coordenadas de destino, a variável "i" é incrementada em 1
+      
+  } while (tabuleiro[destinoLinha][destinoColuna] != 'X');          //Aqui o loop do-while continuará sendo executado enquanto a posição de destino para a qual a peça deve ser movida não conter o caractere 'X' no tabuleiro.
 
   if (tabuleiro[destinoLinha][destinoColuna] == 'X') {
-    tabuleiro[destinoLinha][destinoColuna] = letra;
+    tabuleiro[destinoLinha][destinoColuna] = letra;             ////Nesse bloco de codigo se a posição de destino para a qual a peça deve ser movida contiver o caractere 'X' no tabuleiro, significa que o movimento é válido
     tabuleiro[linhaPeca][colunaPeca] = ' ';
-    limparTabuleiro();
+    limparTabuleiro();              //Aqui a função "liparTabuleiro" é chamada para limpar o tabuleiro antes de iniciar a proxima jogada
   }
 }
 
-void movimentarBispo(int linhaPeca, int colunaPeca) {
+void movimentarBispo(int linhaPeca, int colunaPeca) {           //Declaração da função "movimentarBispo" com dois argumentos dentro dela: a linha e coluna da peça que representa o bispo
 
-  int i = 1;
+  int i = 1;            //Declaração e inicialização da variável "i" com 1, que será usada para percorrer as diagonais
 
   while (tabuleiro[linhaPeca + i][colunaPeca + i] == ' ') {
-    tabuleiro[linhaPeca + i][colunaPeca + i] = 'X';
+    tabuleiro[linhaPeca + i][colunaPeca + i] = 'X';             //Aqui a peça é movida para a proxima casa na inferior a direita e o contador "i" é incrementado para continuar a busca pela diagonal
     i++;
   }
 
-  i = 1;
+  i = 1;            //Reinicia o contador "i" para 1
 
   while (tabuleiro[linhaPeca - i][colunaPeca + i] == ' ') {
-    tabuleiro[linhaPeca - i][colunaPeca + i] = 'X';
+    tabuleiro[linhaPeca - i][colunaPeca + i] = 'X';             //Aqui a peça percorre a diagonal inferior esquerda, movendo-se para cada casa vazia até encontrar uma peça ou chegar ao limite do tabuleiro
     i++;
   }
 
-  i = 1;
+  i = 1;            //Reinicia o contador "i" para 1
 
   while (tabuleiro[linhaPeca - i][colunaPeca - i] == ' ') {
-    tabuleiro[linhaPeca - i][colunaPeca - i] = 'X';
+    tabuleiro[linhaPeca - i][colunaPeca - i] = 'X';             //Aqui a peça percorre a diagonal superior esquerda, movendo-se para cada casa vazia até encontrar uma peça ou chegar ao limite do tabuleiro
     i++;
   }
 
-  i = 1;
+  i = 1;            //Reinicia o contador "i" para 1
 
   while (tabuleiro[linhaPeca + i][colunaPeca - i] == ' ') {
-    tabuleiro[linhaPeca + i][colunaPeca - i] = 'X';
+    tabuleiro[linhaPeca + i][colunaPeca - i] = 'X';             ////Aqui a peça percorre a diagonal superior direita, movendo-se para cada casa vazia até encontrar uma peça ou chegar ao limite do tabuleiro
     i++;
   }
 }
 
-void movimentarTorre(int linhaPeca, int colunaPeca) {
+void movimentarTorre(int linhaPeca, int colunaPeca) {           //Definição da função "movimentarTorre" que recebe como parâmetros a linha e coluna da torre que será movimentada
 
-  int contador = 1;
+  int contador = 1;             //Declaração e inicialização da variável contador com o valor 1, que é para controlar a quantidade de casas a serem percorridas em cada direção
 
-  while (tabuleiro[linhaPeca + contador][colunaPeca] == ' ') {
-    tabuleiro[linhaPeca + contador][colunaPeca] = 'X';
-    contador++;
+  while (tabuleiro[linhaPeca + contador][colunaPeca] == ' ') {              //Início de um laço de repetição que irá percorrer todas as casas acima da torre até encontrar um obstáculo
+    tabuleiro[linhaPeca + contador][colunaPeca] = 'X';              //Quando uma casa é percorrida ela é marcada com um X no tabuleiro
+    contador++;             //A variável "contador" é incrementada para que a próxima casa seja verificada na próxima iteração do laço
   }
 
-  contador = 1;
+  contador = 1;             //A variável "contador" é reinicializada para o valor 1
 
-  while (tabuleiro[linhaPeca - contador][colunaPeca] == ' ') {
-    tabuleiro[linhaPeca - contador][colunaPeca] = 'X';
-    contador++;
+  while (tabuleiro[linhaPeca - contador][colunaPeca] == ' ') {              //Início de um laço de repetição que irá percorrer todas as casas abaixo da torre até encontrar um obstáculo
+    tabuleiro[linhaPeca - contador][colunaPeca] = 'X';              //Quando uma casa é percorrida ela é marcada com um X no tabuleiro
+    contador++;             //A variável "contador" é incrementada para que a próxima casa seja verificada na próxima iteração do laço
   }
 
-  contador = 1;
+  contador = 1;             //A variável contador é reinicializada para o valor 1
 
-  while (tabuleiro[linhaPeca][colunaPeca - contador] == ' ') {
-    tabuleiro[linhaPeca][colunaPeca - contador] = 'X';
-    contador++;
+  while (tabuleiro[linhaPeca][colunaPeca - contador] == ' ') {              //Início de um laço de repetição que irá percorrer todas as casas à esquerda da torre até encontrar um obstáculo
+    tabuleiro[linhaPeca][colunaPeca - contador] = 'X';              //Quando uma casa é percorrida ela é marcada com um X no tabuleiro
+    contador++;             //A variável "contador" é incrementada para que a próxima casa seja verificada na próxima iteração do laço
   }
 
-  contador = 1;
+  contador = 1;             //A variável contador é reinicializada para o valor 1
 
-  while (tabuleiro[linhaPeca][colunaPeca + contador] == ' ') {
-    tabuleiro[linhaPeca][colunaPeca + contador] = 'X';
-    contador++;
-  }
-}
-
-void movimentarCavalo(int linhaPeca, int colunaPeca) {
-
-  if (tabuleiro[linhaPeca + 2][colunaPeca + 1] == ' ') {
-    tabuleiro[linhaPeca + 2][colunaPeca + 1] = 'X';
-  }
-
-  if (tabuleiro[linhaPeca + 2][colunaPeca - 1] == ' ') {
-    tabuleiro[linhaPeca + 2][colunaPeca - 1] = 'X';
-  }
-
-  if (tabuleiro[linhaPeca - 2][colunaPeca + 1] == ' ') {
-    tabuleiro[linhaPeca - 2][colunaPeca + 1] = 'X';
-  }
-
-  if (tabuleiro[linhaPeca - 2][colunaPeca - 1] == ' ') {
-    tabuleiro[linhaPeca - 2][colunaPeca - 1] = 'X';
+  while (tabuleiro[linhaPeca][colunaPeca + contador] == ' ') {              //Início de um laço de repetição que irá percorrer todas as casas à direita da torre até encontrar um obstáculo
+    tabuleiro[linhaPeca][colunaPeca + contador] = 'X';              //Quando uma casa é percorrida ela é marcada com um X no tabuleiro
+    contador++;             //A variável "contador" é incrementada para que a próxima casa seja verificada na próxima iteração do laço
   }
 }
 
-void movimentarRei(int linhaPeca, int colunaPeca) {
+void movimentarCavalo(int linhaPeca, int colunaPeca) {              //Esta linha define a função movimentarCavalo com dois argumentos, a linha e a coluna da posição atual da peça
 
-  int i = -1;
-
-  while (i < 2) {
-    if (tabuleiro[linhaPeca + 1][colunaPeca + i] == ' ')
-      tabuleiro[linhaPeca + 1][colunaPeca + i] = 'X';
-    i++;
+  if (tabuleiro[linhaPeca + 2][colunaPeca + 1] == ' ') {            //Verifica se há uma posição vazia dois espaços abaixo e um espaço à direita da posição atual da peça
+    tabuleiro[linhaPeca + 2][colunaPeca + 1] = 'X';             //Se a condição acima for verdadeira, coloca um 'X' nessa posição no tabuleiro para indicar que a peça pode se mover para essa posição
   }
 
-  i = -1;
-
-  while (i < 2) {
-    if (tabuleiro[linhaPeca - 1][colunaPeca + i] == ' ')
-      tabuleiro[linhaPeca - 1][colunaPeca + i] = 'X';
-    i++;
+  if (tabuleiro[linhaPeca + 2][colunaPeca - 1] == ' ') {            //Verifica se há uma posição vazia dois espaços abaixo e um espaço à esquerda da posição atual da peça
+    tabuleiro[linhaPeca + 2][colunaPeca - 1] = 'X';             //Se a condição acima for verdadeira, coloca um 'X' nessa posição no tabuleiro para indicar que a peça pode se mover para essa posição
   }
 
-  if (tabuleiro[linhaPeca][colunaPeca + 1] == ' ')
-    tabuleiro[linhaPeca][colunaPeca + 1] = 'X';
+  if (tabuleiro[linhaPeca - 2][colunaPeca + 1] == ' ') {            //Verifica se há uma posição vazia dois espaços acima e um espaço à direita da posição atual da peça
+    tabuleiro[linhaPeca - 2][colunaPeca + 1] = 'X';             //Se a condição acima for verdadeira, coloca um 'X' nessa posição no tabuleiro para indicar que a peça pode se mover para essa posição
+  }
 
-  if (tabuleiro[linhaPeca][colunaPeca - 1] == ' ')
-    tabuleiro[linhaPeca][colunaPeca - 1] = 'X';
+  if (tabuleiro[linhaPeca - 2][colunaPeca - 1] == ' ') {            //Verifica se há uma posição vazia dois espaços acima e um espaço à esquerda da posição atual da peça
+    tabuleiro[linhaPeca - 2][colunaPeca - 1] = 'X';             //Se a condição acima for verdadeira, coloca um 'X' nessa posição no tabuleiro para indicar que a peça pode se mover para essa posição
+  }
+}
+
+void movimentarRei(int linhaPeca, int colunaPeca) {             //Declaração da função "movimentoRei" com dois parâmetros: a linha e a coluna da peça do tipo Rei no tabuleiro
+
+  int i = -1;           //Inicializa a variável 'i' com o valor -1, essa variável é usada para iterar pelas posições em torno do Rei no tabuleiro
+
+  while (i < 2) {           //Inicio do loop while que será executado duas vezes: quando "i" é -1 e quando "i" é 0
+    if (tabuleiro[linhaPeca + 1][colunaPeca + i] == ' ')            //Verifica se a casa imediatamente abaixo ou diagonalmente da direita do Rei está vazia
+      tabuleiro[linhaPeca + 1][colunaPeca + i] = 'X';           //Se a casa estiver vazia, a posição é marcada no tabuleiro com um "X", indicando que o Rei pode se mover para lá
+    i++;            //Incrementa a variável "i" para que o loop possa verificar a próxima posição em torno do Rei
+  }
+
+  i = -1;           //Redefine "i" como -1 para prepará-lo para o próximo loop
+
+  while (i < 2) {           //Início do segundo loop while que também será executado duas vezes: quando "i" é -1 e quando "i" é 0
+    if (tabuleiro[linhaPeca - 1][colunaPeca + i] == ' ')            //Verifica se a casa imediatamente acima ou diagonalmente da direita do Rei está vazia
+      tabuleiro[linhaPeca - 1][colunaPeca + i] = 'X';           //Se a casa estiver vazia, a posição é marcada no tabuleiro com um "X", indicando que o Rei pode se mover para lá
+    i++;            //Incrementa a variável "i" para que o loop possa verificar a próxima posição em torno do Rei
+  }
+
+  if (tabuleiro[linhaPeca][colunaPeca + 1] == ' ')              //Verifica se a casa imediatamente à direita do Rei está vazia
+    tabuleiro[linhaPeca][colunaPeca + 1] = 'X';             //Se a casa estiver vazia, marca essa posição no tabuleiro com um "X", indicando que o Rei pode se mover para lá
+
+  if (tabuleiro[linhaPeca][colunaPeca - 1] == ' ')              //Verifica se a casa imediatamente à esquerda do Rei está vazia
+    tabuleiro[linhaPeca][colunaPeca - 1] = 'X';             //Se a casa estiver vazia, marca essa posição no tabuleiro com um "X", indicando que o Rei pode se mover para lá
 }
 
 // PEÇAS BRANCAS
 
-void movimentarReiBranco(int linhaPeca, int colunaPeca) {
+void movimentarReiBranco(int linhaPeca, int colunaPeca) {           //Declaração de uma função "movimentarReiBranco" que recebe dois argumentos inteiros linhaPeca e colunaPeca
 
-  movimentarRei(linhaPeca, colunaPeca);
+  movimentarRei(linhaPeca, colunaPeca);             //Chama a função movimentarRei passando linhaPeca e colunaPeca como argumentos
 
-  colocarTabuleiro();
+  colocarTabuleiro();           //Chama a função colocarTabuleiro que provavelmente atualiza a exibição do tabuleiro após a movimentação
 
   validarPosicao(linhaPeca, colunaPeca);
 }

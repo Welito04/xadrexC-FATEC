@@ -1,16 +1,25 @@
 //Jose Roberto Alves de Lima Julior RA:1840482212044
 //Welito Tixeira do Nascimento RA: 1840482212033
 
-#include <iostream>         //Biblioteca iostream que é usada para entrada e saída de dados
+#include <cstdlib>
+#include <iostream>         //Biblioteca que são usadas para entrada e saída de dados
+#include <string>
+#include <stdlib.h>
 
-char tabuleiro[9][9] = {            //Linha que declara uma matriz de caracteres chamada "tabuleiro" com 9 linhas e 9 colunas
+std::string tabuleiro[9][9] {            //Linha que declara uma matriz de caracteres chamada "tabuleiro" com 9 linhas e 9 colunas
 
-    ' ', '1', '2', '3', '4', '5', '6', '7', '8', '1', 't', 'c', 'b', 'q',
-    'r', 'b', 'c', 't', '2', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', '3',
-    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '4', ' ', ' ', ' ', ' ', ' ',           //Inicializa a matriz acima com caracteres que representam as peças e espaços vazios no tabuleiro de xadrez
-    ' ', ' ', ' ', '5', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '6', ' ',
-    ' ', ' ', ' ', ' ', ' ', ' ', ' ', '7', 'P', 'P', 'P', 'P', 'P', 'P',
-    'P', 'P', '8', 'T', 'C', 'B', 'Q', 'R', 'B', 'C', 'T',
+    " ",      "1",      "2",      "3",      "4",      "5",      "6",
+    "7",      "8",      "1",      "\u265C", "\u265E", "\u265D", "\u265B",
+    "\u265A", "\u265D", "\u265E", "\u265C", "2",      "\u265F", "\u265F",
+    "\u265F", "\u265F", "\u265F", "\u265F", "\u265F", "\u265F", "3",
+    " ",      " ",      " ",      " ",      " ",      " ",      " ",
+    " ",      "4",      " ",      " ",      " ",      " ",      " ",                //Inicializa a matriz acima com caracteres que representam as peças e espaços vazios no tabuleiro de xadrez
+    " ",      " ",      " ",      "5",      " ",      " ",      " ",
+    " ",      " ",      " ",      " ",      " ",      "6",      " ",
+    " ",      " ",      " ",      " ",      " ",      " ",      " ",
+    "7",      "\u2659", "\u2659", "\u2659", "\u2659", "\u2659", "\u2659",
+    "\u2659", "\u2659", "8",      "\u2656", "\u2658", "\u2657", "\u2655",
+    "\u2654", "\u2657", "\u2658", "\u2656",
 };
 
 void limparTabuleiro() {            //Linha declara uma função chamada "limparTabuleiro"
@@ -24,7 +33,8 @@ void limparTabuleiro() {            //Linha declara uma função chamada "limpar
 }
 
 void colocarTabuleiro() {           //Linha que declara uma função chamada "colocarTabuleiro"
-
+system("clear");
+    
   for (int linha = 0; linha < 9; linha++) {
     std::cout << std::endl;
     for (int coluna = 0; coluna < 9; coluna++) {
@@ -44,7 +54,7 @@ void validarPosicao(int linhaPeca, int colunaPeca) {            //Declaração d
 
   int destinoLinha;             //Declaração de variáveis inteiras "destinoLinha"
   int destinoColuna;            //Declaração de variáveis inteiras "destinoColuna" 
-  char letra = tabuleiro[linhaPeca][colunaPeca];            //Declaração de variável char "letra", que armazena o caractere da posição do tabuleiro correspondente às coordenadas da peça que se deseja movimentar
+  std::string letra = tabuleiro[linhaPeca][colunaPeca];            //Declaração de variável string "letra", que armazena o caractere da posição do tabuleiro correspondente às coordenadas da peça que se deseja movimentar
   int i = 0;            //A variável "i" é inicializada com zero e será utilizada para controlar o loop do-while que será executado a seguir
 
   do {          //Início do loop do-while que será executado pelo menos uma vez, para receber as coordenadas da posição para a qual a peça deve ser movida
@@ -210,7 +220,7 @@ void movimentarBispoBranco(int linhaPeca, int colunaPeca) {             //Declar
 
 void movimentarPeaoBranco(int linhaPeca, int colunaPeca) {              //Declaração da função "movimentarPeaoBranco" que recebe a linha e a coluna da peça como parâmetros
 
-  char linhaInicial = '7';              //Declaração de uma variável char "linhaInicial" com o valor "7"
+  std::string linhaInicial = "7";              //Declaração de uma variável string "linhaInicial" com o valor "7"
 
   if (*tabuleiro[linhaPeca] == linhaInicial &&
       tabuleiro[linhaPeca - 1][colunaPeca] == ' ' &&            //Verifica se a linha da peça é igual à "linhaInicial" e se as duas casas à frente da peça estão vazias
@@ -296,7 +306,7 @@ void movimentarCavaloPreto(int linhaPeca, int colunaPeca) {             //Declar
 
 void movimentarPeaoPreto(int linhaPeca, int colunaPeca) {           //Declaração da função movimentarPeaoPreto que recebe como parâmetros linhaPeca e colunaPeca
 
-  char linhaInicial = '2';              //Define uma variável linhaInicial do tipo char com o valor 2
+  std::string linhaInicial = "2";              //Define uma variável linhaInicial do tipo String com o valor 2
 
   if (*tabuleiro[linhaPeca] == linhaInicial &&
       tabuleiro[linhaPeca + 1][colunaPeca] == ' ' &&            //Verificam se a peça está na posição inicial e se as duas casas à frente estão vazias
@@ -349,52 +359,52 @@ int main() {            //Início da função principal
     std::cout << "Digite a coluna da peça: ";           //Imprime uma mensagem solicitando que o usuário digite a coluna da peça
     std::cin >> colunaPeca;             //Lê um valor inteiro digitado pelo usuário e o armazena na variável colunaPeca
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'P') {              //Verifica se a posição selecionada contém um peão branco
+    if (tabuleiro[linhaPeca][colunaPeca] == '\u2659') {              //Verifica se a posição selecionada contém um peão branco
       movimentarPeaoBranco(linhaPeca, colunaPeca);              //Chama a função movimentarPeaoBranco() passando a linha e a coluna da peça como argumentos
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'p') {              //Verifica se a posição selecionada contém um peão preto
+    if (tabuleiro[linhaPeca][colunaPeca] == '\u265F') {              //Verifica se a posição selecionada contém um peão preto
       movimentarPeaoPreto(linhaPeca, colunaPeca);               //Chama a função movimentarPeaoPreto() passando a linha e a coluna da peça como argumentos
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'T') {              //Verifica se a posição selecionada contém uma torre branca
+    if (tabuleiro[linhaPeca][colunaPeca] == '\u2656') {              //Verifica se a posição selecionada contém uma torre branca
       movimentarTorreBranca(linhaPeca, colunaPeca);             //Chama a função movimentarTorreBranca() passando a linha e a coluna da peça como argumentos
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 't') {              //Verifica se a posição selecionada contém uma torre preta
+    if (tabuleiro[linhaPeca][colunaPeca] == '\u265c') {              //Verifica se a posição selecionada contém uma torre preta
       movimentarTorrePreta(linhaPeca, colunaPeca);              //Chama a função movimentarTorrePreta() passando a linha e a coluna da peça como argumentos
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'C') {              //Verifica se a posição selecionada contém um cavalo branco
+    if (tabuleiro[linhaPeca][colunaPeca] == '\u2658') {              //Verifica se a posição selecionada contém um cavalo branco
       movimentarCavaloBranco(linhaPeca, colunaPeca);            //Chama a função movimentarCavaloBranco() passando a linha e a coluna da peça como argumentos
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'c') {              //Verifica se a posição selecionada contém um cavalo preto
+    if (tabuleiro[linhaPeca][colunaPeca] == '\u265E') {              //Verifica se a posição selecionada contém um cavalo preto
       movimentarCavaloPreto(linhaPeca, colunaPeca);             //Chama a função movimentarCavaloPreto() passando a linha e a coluna da peça como argumentos
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'B') {              //Verifica se a posição selecionada contém um bispo branco
+    if (tabuleiro[linhaPeca][colunaPeca] == '\u2657') {              //Verifica se a posição selecionada contém um bispo branco
       movimentarBispoBranco(linhaPeca, colunaPeca);             //Chama a função movimentarBispoBranco() passando a linha e a coluna da peça como argumentos
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'b') {              //Verifica se a posição selecionada contém um bispo preto
+    if (tabuleiro[linhaPeca][colunaPeca] == '\u265D') {              //Verifica se a posição selecionada contém um bispo preto
       movimentarBispoPreto(linhaPeca, colunaPeca);              //Chama a função movimentarBispoPreto() passando a linha e a coluna da peça como argumentos
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'Q') {              //Verifica se a posição selecionada contém uma rainha branca
+    if (tabuleiro[linhaPeca][colunaPeca] == '\u2655') {              //Verifica se a posição selecionada contém uma rainha branca
       movimentarRainhaBranca(linhaPeca, colunaPeca);            //Chama a função movimentarRainhaBranca() passando a linha e a coluna da peça como argumentos
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'q') {              //Verifica se a posição selecionada contém uma rainha preta
+    if (tabuleiro[linhaPeca][colunaPeca] == '\u265B') {              //Verifica se a posição selecionada contém uma rainha preta
       movimentarRainhaPreta(linhaPeca, colunaPeca);             //Chama a função movimentarRainhaPreta() passando a linha e a coluna da peça como argumentos
     }
 
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'R') {              //Verifica se a posição selecionada contém um rei branco
+    if (tabuleiro[linhaPeca][colunaPeca] == '\u2655') {              //Verifica se a posição selecionada contém um rei branco
       movimentarReiBranco(linhaPeca, colunaPeca);               //Chama a função movimentarReiBranco() passando a linha e a coluna da peça como argumentos
     }
 
-    if (tabuleiro[linhaPeca][colunaPeca] == 'r') {              //Verifica se a posição selecionada contém um rei preto
+    if (tabuleiro[linhaPeca][colunaPeca] == '\u265A') {              //Verifica se a posição selecionada contém um rei preto
       movimentarReiPreto(linhaPeca, colunaPeca);                //Chama a função movimentarReiPreto() passando a linha e a coluna da peça como argumentos
     }
 

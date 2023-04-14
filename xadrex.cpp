@@ -118,7 +118,7 @@ void movimentarTorre(int linhaPeca, int colunaPeca) {           //Definição da
 
   int contador = 1;             //Declaração e inicialização da variável contador com o valor 1, que é para controlar a quantidade de casas a serem percorridas em cada direção
 
-  while (tabuleiro[linhaPeca + contador][colunaPeca] == ' ') {              //Início de um laço de repetição que irá percorrer todas as casas acima da torre até encontrar um obstáculo
+  while (tabuleiro[linhaPeca + contador][colunaPeca] == " ") {              //Início de um laço de repetição que irá percorrer todas as casas acima da torre até encontrar um obstáculo
     tabuleiro[linhaPeca + contador][colunaPeca] = "X";              //Quando uma casa é percorrida ela é marcada com um X no tabuleiro
     contador++;             //A variável "contador" é incrementada para que a próxima casa seja verificada na próxima iteração do laço
   }

@@ -1,3 +1,6 @@
+//Jose Roberto Alves de Lima Julior RA:1840482212044
+//Welito Tixeira do Nascimento RA: 1840482212033
+
 #include <iostream>         //Biblioteca iostream que é usada para entrada e saída de dados
 
 char tabuleiro[9][9] = {            //Linha que declara uma matriz de caracteres chamada "tabuleiro" com 9 linhas e 9 colunas
